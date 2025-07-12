@@ -2,11 +2,12 @@ name: BotFut Scheduler
 
 on:
   schedule:
-    - cron: '0 0 * * *'      # todo dia à meia-noite UTC
+    - cron: '30 0 * * *'   # todo dia às 00:30 UTC
   workflow_dispatch:       # permite rodar manualmente
 
 jobs:
   run-scheduler:
+    name: Disparar BotFut diariamente
     runs-on: ubuntu-latest
     timeout-minutes: 480    # até 8h de execução
 
