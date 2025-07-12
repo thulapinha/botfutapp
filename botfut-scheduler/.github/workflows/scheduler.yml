@@ -1,0 +1,27 @@
+name: BotFut Scheduler
+
+on:
+  schedule:
+    - cron: '0 0 * * *'      # todo dia à meia-noite UTC
+  workflow_dispatch:       # permite rodar manualmente
+
+jobs:
+  run-scheduler:
+    runs-on: ubuntu-latest
+    timeout-minutes: 480    # até 8h de execução
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Dart SDK
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 'stable'
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Run scheduler script
+        run: dart run bin1/scheduler.dart
+
